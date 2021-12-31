@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user-details</title>
+    <style>
+        body > div {
+            box-sizing: border-box;
+            display: flex;
+            height: 200px;
+            background: cornflowerblue;
+            margin-bottom: 5px;
+        }
+        button {
+            width: 100px;
+            height: 35px;
+            border-radius: 8px;
+            color: #fff;
+            background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+        }
+
+    </style>
+
+<!--    btn.onclick = function () {-->
+<!--    window.open('https://jsonplaceholder.typicode.com/users/1/posts')-->
+<!--    }-->
+</head>
+<body>
+
+<script>
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(value => value.json())
+    .then(users=> {
+        console.log(users);
+        for (const user of users) {
+            let divContainer = document.createElement('div');
+            let btn = document.createElement('button');
+            btn.innerText = 'post of current user';
+            btn.onclick = function () {
+                window.open('https://jsonplaceholder.typicode.com/users/1/posts')
+            }
+            divContainer.innerText = `${user.id},
+            ${user.name}
+            ${user.phone}
+            ${user.username}
+            ${user.email}
+            ${user.website}
+             ${user.address.city} ,   ${user.address.geo.lat} ,   ${user.address.geo.lng}
+            ${user.company.bs}  ,   ${user.company.name}  ,  ${user.company.catchPhrase}`;
+
+
+            divContainer.appendChild(btn);
+            document.body.appendChild(divContainer);
+        }
+    })
+
+</script>
+</body>
+</html>

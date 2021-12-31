@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*body {*/
+        /*    display: flex;*/
+        /*    margin: 0 auto;*/
+        /*    width: 100%;*/
+        /*    height: 100%;*/
+        /*    background-color: aliceblue;*/
+        /*}*/
+
+
+
+        body > div {
+             display: flex;
+             background: cornflowerblue;
+             height: 200px;
+             margin-bottom: 5px;
+
+        }
+         button {
+             margin-left: 20px;
+             width: 100px;
+             height: 35px;
+             border-radius: 5px;
+             color: #fff;
+             background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+        }
+
+    </style>
+</head>
+<body>
+
+
+<script>
+
+
+
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(responce => responce.json())
+    .then(users => {
+        console.log(users);
+        for (const user of users) {
+            let divElement = document.createElement('div');
+            divElement.innerText = `${user.id} ${user.name}`;
+            let btn = document.createElement('button');
+            btn.innerText = 'CLICK';
+            let link = document.createElement('a');
+            link.innerText = 'link-page';
+            link.href = 'user-details.html';
+            btn.onclick = function () {
+                window.open('http://localhost:63342/js_home-work/Mini_project_js/user-details.html?_ijt=7jsf3mfh59ge7air3c50cpj9sg&_ij_reload=RELOAD_ON_SAVE')
+            }
+
+
+
+            divElement.appendChild(btn)
+            document.body.appendChild(divElement);
+
+        }
+    })
+    
+
+</script>
+</body>
+</html>
